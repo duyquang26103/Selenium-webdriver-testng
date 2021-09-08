@@ -14,28 +14,23 @@ public class Topic_00_Template {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 
-	@Test
-	public void TC_01_Firefox_latest() {
-//		1/ firefox latest: 89
-//		2/ Selenium 3.141.59
-//		3/ TestNG 6.14.3
-//		4/ Gecko Driver
+	@BeforeClass
+	public void BeforeClass() {
 		System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
 		driver = new FirefoxDriver();
-		driver.get("https://www.guru99.com/");
-		driver.close();
-	
+
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 	}
-	
-//	@Test
-	public void TC_01_Firefox_Old() {	
-//		1/ firefox 41.0.2
-//		2/ Selenium 2.53.1
-//		3/ no need TestNG
-//		4/ no need Gecko Driver
-		driver = new FirefoxDriver();
-		driver.get("https://www.guru99.com/");
+
+	@Test
+	public void TC_01_Firefox_latest() {
+
+		driver.get("");
 		driver.close();
-	
+	}
+
+	@AfterClass
+	public void AfterClass() {
+		driver.quit();
 	}
 }
