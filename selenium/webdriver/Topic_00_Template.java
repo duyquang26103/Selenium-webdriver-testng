@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -16,8 +17,8 @@ public class Topic_00_Template {
 
 	@BeforeClass
 	public void BeforeClass() {
-		System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
-		driver = new FirefoxDriver();
+		System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDrivers\\chromedriver.exe");
+		driver = new ChromeDriver();
 
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 	}
@@ -26,7 +27,7 @@ public class Topic_00_Template {
 	public void TC_01_Firefox_latest() {
 
 		driver.get("");
-		driver.close();
+		
 	}
 
 	@AfterClass

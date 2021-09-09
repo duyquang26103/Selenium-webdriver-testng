@@ -11,7 +11,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_06_Web_Element_Command {
+public class Topic_06_Web_Element_Command_I {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 
@@ -26,7 +26,7 @@ public class Topic_06_Web_Element_Command {
 	By javaSelectedBy = By.id("java");
 
 	By passwordTextboxBy = By.id("password");
-	By disableRadioBy = By.xpath("//label[text()='Radio button is disabled']");
+	By disableRadioBy = By.id("radio-disabled");
 	By bioTextboxBy = By.id("bio");
 	By job3SelectBy = By.id("job3");
 	By checkDisableCBDBy = By.id("check-disbaled");
@@ -85,19 +85,19 @@ public class Topic_06_Web_Element_Command {
 
 	@Test
 	public void TC_03_isEnabled() {
-		if(isElementEnabledBy(emailTextboxBy));
-		if(isElementEnabledBy(ageOver18RadioBy));
-		if(isElementEnabledBy(educationTextboxBy));
-		if(isElementEnabledBy(job1SelectBy));
-		if(isElementEnabledBy(job2SelectBy));
-		if(isElementEnabledBy(developmentSelectBy));
-		if(isElementEnabledBy(slide01SliderBy));
-		if(isElementEnabledBy(passwordTextboxBy));
-		if(isElementEnabledBy(disableRadioBy));
-		if(isElementEnabledBy(bioTextboxBy));
-		if(isElementEnabledBy(job3SelectBy));
-		if(isElementEnabledBy(slide02SliderBy));
-		if(isElementEnabledBy(checkDisableCBDBy));
+		Assert.assertTrue(isElementEnabledBy(emailTextboxBy));
+		Assert.assertTrue(isElementEnabledBy(ageOver18RadioBy));
+		Assert.assertTrue(isElementEnabledBy(educationTextboxBy));
+		Assert.assertTrue(isElementEnabledBy(job1SelectBy));
+		Assert.assertTrue(isElementEnabledBy(job2SelectBy));
+		Assert.assertTrue(isElementEnabledBy(developmentSelectBy));
+		Assert.assertTrue(isElementEnabledBy(slide01SliderBy));
+		Assert.assertFalse(isElementEnabledBy(passwordTextboxBy));
+		Assert.assertFalse(isElementEnabledBy(disableRadioBy));
+		Assert.assertFalse(isElementEnabledBy(bioTextboxBy));
+		Assert.assertFalse(isElementEnabledBy(job3SelectBy));
+		Assert.assertFalse(isElementEnabledBy(slide02SliderBy));
+		Assert.assertFalse(isElementEnabledBy(checkDisableCBDBy));
 
 	}
 
@@ -105,10 +105,10 @@ public class Topic_06_Web_Element_Command {
 	public void TC_04_isSelected() {
 		clickToElement(ageOver18RadioBy);
 		clickToElement(javaSelectedBy);
-		if(isElementSelectedBy(ageOver18RadioBy));
-		if(isElementSelectedBy(javaSelectedBy));
+		Assert.assertTrue(isElementSelectedBy(ageOver18RadioBy));
+		Assert.assertTrue(isElementSelectedBy(javaSelectedBy));
 		clickToElement(javaSelectedBy);
-		if(isElementSelectedBy(javaSelectedBy));
+		Assert.assertFalse(isElementSelectedBy(javaSelectedBy));
 	}
 
 	public boolean isElementDisplayBy(By by) {
@@ -157,6 +157,6 @@ public class Topic_06_Web_Element_Command {
 
 	@AfterClass
 	public void AfterClass() {
-		//driver.quit();
+		driver.quit();
 	}
 }
