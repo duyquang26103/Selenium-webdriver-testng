@@ -143,7 +143,7 @@ public class Topic_07_TextBox_TextArea {
 
 	@AfterClass
 	public void AfterClass() {
-		//driver.quit();
+		driver.quit();
 	}
 
 	public int randomInt() {
