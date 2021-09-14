@@ -34,7 +34,7 @@ public class Topic_08_Custom_Dropdown_List {
 		explicitWait = new WebDriverWait(driver, 15);
 	}
 
-	@Test
+	//@Test
 	public void TC_01_Jquery() {
 		driver.get("https://jqueryui.com/resources/demos/selectmenu/default.html");
 
@@ -57,7 +57,7 @@ public class Topic_08_Custom_Dropdown_List {
 
 	}
 
-	@Test
+	//@Test
 	public void TC_02_ReactJs() {
 		driver.get("https://react.semantic-ui.com/maximize/dropdown-example-selection/");
 		driver.findElement(By.cssSelector(".ui.fluid.selection.dropdown")).click();
@@ -79,14 +79,14 @@ public class Topic_08_Custom_Dropdown_List {
 
 	}
 
-	@Test
+	//@Test
 	public void TC_03_VueJs() {
 		driver.get("https://mikerodham.github.io/vue-dropdowns/");
 		customDropdown(By.cssSelector(".dropdown-toggle"), By.xpath("//ul[@class='dropdown-menu']//li"),
 				"First Option");
 	}
 
-	@Test
+	//@Test
 	public void TC_04_Angular() {
 		driver.get(
 				"https://ej2.syncfusion.com/angular/demos/?_ga=2.262049992.437420821.1575083417-524628264.1575083417#/material/drop-down-list/data-binding");
@@ -104,6 +104,8 @@ public class Topic_08_Custom_Dropdown_List {
 		
 	customEditableDropdown(By.xpath("//div[text()='Default']/following-sibling::div/input"),
 			By.xpath("//ul[@class=\"es-list\"]/li[@style=\'display: none;']"),"BMW","BMW");
+	
+	Assert.assertEquals(getHiddenText("div[id='default-place'] input[type='text']"), "BMW");
 	}
 
 	@AfterClass
@@ -163,7 +165,12 @@ public class Topic_08_Custom_Dropdown_List {
 					js.executeScript("argument[0].scrollIntoView(True)", element);
 					element.click();
 				}
+				break;
 			}
 		}
+	}
+	
+	public String getHiddenText(String cssLocator) {
+		return (String) js.executeScript("return document.querySelector(\"" + cssLocator + "\").value");
 	}
 }
