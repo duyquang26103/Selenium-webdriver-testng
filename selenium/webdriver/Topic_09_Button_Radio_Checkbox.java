@@ -26,7 +26,7 @@ public class Topic_09_Button_Radio_Checkbox {
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 	}
 
-	@Test
+	// @Test
 	public void TC_01_Button() {
 		By loginButton = By.xpath("//button[@class='fhs-btn-login']");
 		driver.get("https://www.fahasa.com/customer/account/create?attempt=1");
@@ -46,22 +46,21 @@ public class Topic_09_Button_Radio_Checkbox {
 
 		driver.navigate().refresh();
 		driver.findElement(By.xpath("//a[text()='Đăng nhập']")).click();
-		
+
 		js.executeScript("arguments[0].removeAttribute('disabled')", driver.findElement(loginButton));
-		
+
 		driver.findElement(loginButton).click();
 		Assert.assertTrue(driver
 				.findElement(By.xpath(
 						"//div[@class='fhs-input-box checked-error']//div[text()='Thông tin này không thể để trống']"))
 				.isDisplayed());
-		
-		Assert.assertTrue(driver
-				.findElement(By.xpath(
-						"//div[@class='fhs-input-box fhs-input-display checked-error']//div[text()='Thông tin này không thể để trống']"))
+
+		Assert.assertTrue(driver.findElement(By.xpath(
+				"//div[@class='fhs-input-box fhs-input-display checked-error']//div[text()='Thông tin này không thể để trống']"))
 				.isDisplayed());
 	}
-	
-	@Test
+
+	// @Test
 	public void TC_02_Checkbox_Default() {
 		driver.get("https://demos.telerik.com/kendo-ui/checkbox/index");
 		By dualZone = By.xpath("//label[text()='Dual-zone air conditioning']/preceding-sibling::input");
@@ -71,10 +70,9 @@ public class Topic_09_Button_Radio_Checkbox {
 		Assert.assertTrue(driver.findElement(dualZone).isSelected());
 		clicktoUncheck(dualZone);
 		Assert.assertFalse(driver.findElement(dualZone).isSelected());
-
 	}
-	
-	@Test
+
+	// @Test
 	public void TC_03_Radio_Button() {
 		driver.get("https://demos.telerik.com/kendo-ui/radiobutton/index");
 		By petrolV2 = By.xpath("//label[text()='2.0 Petrol, 147kW']/preceding-sibling::input");
@@ -83,9 +81,52 @@ public class Topic_09_Button_Radio_Checkbox {
 		clicktoCheck(petrolV2);
 	}
 
+	// @Test
+	public void TC_04_Custom_Radio_Button1() {
+		driver.get("https://material.angular.io/components/radio/examples");
+		By summerRadio = By.xpath("//span[contains(.,'Summer')]/preceding-sibling::span//input");
+		clickToCheckElement(summerRadio);
+		Assert.assertTrue(driver.findElement(summerRadio).isSelected());
+	}
+
+	// @Test
+	public void TC_05_Custom_Checkbox1() {
+		driver.get("https://material.angular.io/components/checkbox/examples");
+		By checkedCheckbox = By.xpath("//span[text()='Checked']/preceding-sibling::span/input");
+		By indeterminateCheckbox = By.xpath("//span[text()='Indeterminate']/preceding-sibling::span/input");
+		clickToCheckElement(checkedCheckbox);
+		clickToCheckElement(indeterminateCheckbox);
+		Assert.assertTrue(driver.findElement(checkedCheckbox).isSelected());
+		Assert.assertTrue(driver.findElement(indeterminateCheckbox).isSelected());
+	}
+
+	@Test
+	public void TC_06_Custom_Checkbox2() {
+		driver.get(
+				"https://docs.google.com/forms/d/e/1FAIpQLSfiypnd69zhuDkjKgqvpID9kwO29UCzeCVrGGtbNPZXQok0jA/viewform");
+		By canThoRadioChecked = By.xpath("//div[@aria-label='Cần Thơ' and @aria-checked='true']");
+		By canThoRadionoCheck = By.xpath("//div[@aria-label='Cần Thơ' and @aria-checked='false']");
+		Assert.assertTrue(driver.findElement(canThoRadionoCheck).isDisplayed());
+		clickToCheckElement(canThoRadionoCheck);
+		Assert.assertTrue(driver.findElement(canThoRadioChecked).isDisplayed());
+
+	}
+
 	@AfterClass
 	public void AfterClass() {
 		driver.quit();
+	}
+
+	public void clickToCheckElement(By by) {
+
+		js.executeScript("arguments[0].click()", driver.findElement(by));
+
+	}
+
+	public void clickToUncheckElement(By by) {
+		if (driver.findElement(by).isSelected()) {
+			js.executeScript("argument[0].click", by);
+		}
 	}
 
 	public void sleepInSecond(long timeoutInSecond) {
@@ -96,18 +137,17 @@ public class Topic_09_Button_Radio_Checkbox {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void clicktoCheck(By by) {
-		if(!driver.findElement(by).isSelected()) {
+		if (!driver.findElement(by).isSelected()) {
 			driver.findElement(by).click();
 		}
 	}
-	
+
 	public void clicktoUncheck(By by) {
-		if(driver.findElement(by).isSelected()) {
+		if (driver.findElement(by).isSelected()) {
 			driver.findElement(by).click();
 		}
 	}
-	
 
 }
