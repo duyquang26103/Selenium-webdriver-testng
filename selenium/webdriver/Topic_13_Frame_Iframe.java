@@ -47,10 +47,7 @@ public class Topic_13_Frame_Iframe {
 		driver.switchTo().frame(driver.findElement(By.xpath("//div[@class='fanpage ']//iframe")));
 		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='uiScaledImageContainer _2zfr']")).isDisplayed());
 		
-        
-        String language = executor.executeScript("return window.navigator.userlanguage || window.navigator.language").toString();
-        System.out.println(language);
-		Assert.assertEquals(driver.findElement(By.xpath("//div[@class='_1drq']")).getText(),"16万 件の「いいね！」");
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='_1drq']")).isDisplayed());
 		
 		driver.switchTo().defaultContent();
 		driver.switchTo().frame("cs_chat_iframe");
@@ -62,6 +59,7 @@ public class Topic_13_Frame_Iframe {
 		driver.findElement(By.cssSelector("#serviceSelect option[value='60021807']")).click();
 		driver.findElement(By.xpath("//textarea[@name='message']")).sendKeys("auto test");
 		driver.findElement(By.cssSelector("input.submit")).click();
+		sleepInSecond(2);
 		Assert.assertTrue(driver.findElement(By.xpath("//label[text()='Jasson']")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.xpath("//label[text()='032254451']")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.xpath("//textarea[text()='auto test']")).isDisplayed());
@@ -79,7 +77,7 @@ public class Topic_13_Frame_Iframe {
 		
 	}
 	
-	//@Test
+	@Test
 	public void TC_02_Frame() {
 		driver.get("https://netbanking.hdfcbank.com/netbanking/");
 		driver.switchTo().frame(driver.findElement(By.xpath("//frame")));

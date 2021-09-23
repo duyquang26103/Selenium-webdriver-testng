@@ -28,7 +28,7 @@ public class Topic_14_Windows_Tab {
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 	}
 
-	// @Test
+	@Test
 	public void TC_01_Windows_Tab1() {
 
 		driver.get("https://automationfc.github.io/basic-form/index.html");
@@ -53,7 +53,7 @@ public class Topic_14_Windows_Tab {
 		sleepInSecond(3);
 	}
 
-	//@Test
+	@Test
 	public void TC_02_Windows_Tab2() {
 
 		driver.get("https://kyna.vn/");
@@ -102,23 +102,25 @@ public class Topic_14_Windows_Tab {
 		Assert.assertTrue(driver
 				.findElement(By.xpath("//span[text()='The product Sony Xperia has been added to comparison list.']"))
 				.isDisplayed());
-		
-		driver.findElement(By.xpath("//a[@title='Samsung Galaxy']/following-sibling::div//a[@class='link-compare']")).click();
+
+		driver.findElement(By.xpath("//a[@title='Samsung Galaxy']/following-sibling::div//a[@class='link-compare']"))
+				.click();
 		Assert.assertTrue(driver
 				.findElement(By.xpath("//span[text()='The product Samsung Galaxy has been added to comparison list.']"))
 				.isDisplayed());
 		driver.findElement(By.xpath("//button[@title='Compare']")).click();
-		
+
 		SwitchToWindownByTitle("Products Comparison List - Magento Commerce");
-		Assert.assertEquals(driver.getTitle(),"Products Comparison List - Magento Commerce");
-		
-		
+		Assert.assertEquals(driver.getTitle(), "Products Comparison List - Magento Commerce");
+
 		CloseWindowsExcept(parentID);
 		SwitchToWindownByTitle("Mobile");
 		driver.findElement(By.xpath("//a[text()='Clear All']")).click();
-		Assert.assertEquals(driver.switchTo().alert().getText(),"Are you sure you would like to remove all products from your comparison?");
+		Assert.assertEquals(driver.switchTo().alert().getText(),
+				"Are you sure you would like to remove all products from your comparison?");
 		driver.switchTo().alert().accept();
-		Assert.assertTrue(driver.findElement(By.xpath("//span[text()='The comparison list was cleared.']")).isDisplayed());
+		Assert.assertTrue(
+				driver.findElement(By.xpath("//span[text()='The comparison list was cleared.']")).isDisplayed());
 	}
 
 	@AfterClass
