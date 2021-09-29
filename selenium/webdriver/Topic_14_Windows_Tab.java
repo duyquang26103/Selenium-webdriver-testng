@@ -127,6 +127,16 @@ public class Topic_14_Windows_Tab {
 	public void AfterClass() {
 		driver.quit();
 	}
+	
+	public void SwitchToWindownByID(String parentID) {
+		Set<String> Allindows = driver.getWindowHandles();
+		for (String id : Allindows) {
+			if (!id.equals(parentID)) {
+				driver.switchTo().window(id);
+				break;
+			}
+		}
+	}
 
 	public void SwitchToWindownByTitle(String titleExpected) {
 		Set<String> Allindows = driver.getWindowHandles();
