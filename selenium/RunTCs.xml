@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite parallel="false" name="Suite">
+
+  <test name="run on Chrome">
+    <packages>
+   		<package name = "Admin"/>
+   		<package name = "Client"/>
+    </packages>
+    
+  </test> 
+</suite> 

@@ -24,6 +24,7 @@ public class Topic_06_Web_Element_Command_II {
 		driver = new ChromeDriver();
 
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
 		
 	}
 
@@ -71,6 +72,9 @@ public class Topic_06_Web_Element_Command_II {
 		Assert.assertFalse(driver.findElement(By.cssSelector(".uppercase-char.completed")).isDisplayed());
 		Assert.assertFalse(driver.findElement(By.cssSelector(".special-char.completed")).isDisplayed());
 		Assert.assertFalse(driver.findElement(By.xpath("//li[@class='8-char completed' and text()='8 characters minimum']")).isDisplayed());
+		
+		driver.findElement(By.id("marketing_newsletter")).click();
+		driver.findElement(By.id("marketing_newsletter")).isSelected();
 	}
 
 	@AfterClass
